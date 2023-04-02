@@ -14,6 +14,7 @@ func InitializeDeviceHandler() handler.BookHandler {
 	wire.Build(
 		handler.NewBookHandler,
 		bookSet,
+		deviceSet,
 	)
 	return handler.BookHandler{}
 }

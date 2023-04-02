@@ -2,21 +2,25 @@ package handler
 
 import (
 	"context"
+	"log"
 
 	"gowire/pkg/model"
 	"gowire/pkg/repo"
 )
 
 type BookHandler struct {
-	repo repo.IBookRepo
+	book   repo.IBookRepo
+	device repo.IDeviceRepo
 }
 
 func (bh BookHandler) GetList(ctx context.Context) []model.Book {
-	return bh.repo.Get()
+	log.Println("设备", bh.device.Get())
+	return bh.book.Get()
 }
 
-func NewBookHandler(repo repo.IBookRepo) BookHandler {
+func NewBookHandler(book repo.IBookRepo, device repo.IDeviceRepo) BookHandler {
 	return BookHandler{
-		repo: repo,
+		book:   book,
+		device: device,
 	}
 }

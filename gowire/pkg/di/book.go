@@ -14,6 +14,7 @@ func InitializeBookHandler() handler.BookHandler {
 	wire.Build(
 		handler.NewBookHandler,
 		bookSet,
+		deviceSet,
 	)
 	return handler.BookHandler{}
 }
@@ -21,4 +22,9 @@ func InitializeBookHandler() handler.BookHandler {
 var bookSet = wire.NewSet(
 	repo.NewBookRepo,
 	wire.Bind((*repo.IBookRepo)(nil), (*repo.BookRepo)(nil)),
+)
+
+var deviceSet = wire.NewSet(
+	repo.NewDeviceRepo,
+	wire.Bind((*repo.IDeviceRepo)(nil), (*repo.DeviceRepo)(nil)),
 )

@@ -16,7 +16,8 @@ import (
 
 func InitializeBookHandler() handler.BookHandler {
 	bookRepo := repo.NewBookRepo()
-	bookHandler := handler.NewBookHandler(bookRepo)
+	deviceRepo := repo.NewDeviceRepo()
+	bookHandler := handler.NewBookHandler(bookRepo, deviceRepo)
 	return bookHandler
 }
 
@@ -24,10 +25,13 @@ func InitializeBookHandler() handler.BookHandler {
 
 func InitializeDeviceHandler() handler.BookHandler {
 	bookRepo := repo.NewBookRepo()
-	bookHandler := handler.NewBookHandler(bookRepo)
+	deviceRepo := repo.NewDeviceRepo()
+	bookHandler := handler.NewBookHandler(bookRepo, deviceRepo)
 	return bookHandler
 }
 
 // book.go:
 
 var bookSet = wire.NewSet(repo.NewBookRepo, wire.Bind((*repo.IBookRepo)(nil), (*repo.BookRepo)(nil)))
+
+var deviceSet = wire.NewSet(repo.NewDeviceRepo, wire.Bind((*repo.IDeviceRepo)(nil), (*repo.DeviceRepo)(nil)))
